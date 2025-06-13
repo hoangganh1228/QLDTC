@@ -7,6 +7,7 @@ const ReviewSchema = new mongoose.Schema({
     min: 1,
     max: 5
   },
+  image: String,
   comment: {
     type: String,
     trim: true

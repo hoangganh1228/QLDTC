@@ -8,16 +8,16 @@ module.exports.delete = async (req, res) => {
     });
 
     if (!deletedProduct) {
-      return res.status(404).json({ message: 'Không tìm thấy sản phẩm để xóa' });
+      return res.status(404).json({ message: 'Không tìm thấy đánh giá để xóa' });
     }
 
     res.status(200).json({
-      message: 'Xóa sản phẩm thành công',
+      message: 'Xóa đánh giá thành công',
       product: deletedProduct
     });
   } catch (error) {
     res.status(500).json({
-      message: 'Lỗi khi xóa sản phẩm',
+      message: 'Lỗi khi xóa đánh giá',
       error: error.message
     });
   }
@@ -28,7 +28,7 @@ module.exports.getReviews = async (req, res) => {
     const reviews = await Review.find();
 
 
-    if(!reviews) {
+    if (!reviews) {
       return res.status(404).json({ message: 'Không có đánh giá nào' });
     }
 
