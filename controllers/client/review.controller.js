@@ -4,7 +4,7 @@ const Product = require("../../models/product.model");
 const review = async (req, res) => {
   try {
     const { rating, comment, product, user, order } = req.body;
-
+  
     if (!rating || !product || !user || !order) {
       return res.status(400).json({ message: "Thiếu thông tin bắt buộc: rating, product, user, order" });
     }
@@ -48,7 +48,7 @@ const review = async (req, res) => {
         "rating.count": ratingCount
       }
     });
-
+    
     res.status(201).json({
       message: "Tạo đánh giá thành công",
       review: newReview

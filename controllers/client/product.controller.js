@@ -17,8 +17,8 @@ module.exports.index = async (req, res) => {
 // _id 
 module.exports.detailProduct = async (req, res) => {
   try {
-    const id = req.params.id;
     
+    const id = req.params.id;
     const product = await Product.findOne({_id: id, deleted: false});
 
     if (!product) return res.status(404).json({ message: 'Không tìm thấy sản phẩm.' });
@@ -36,8 +36,8 @@ exports.searchProduct = async (req, res) => {
     const keyword = req.query.keyword || "";
      const products = await Product.find({
       title: { 
-        $regex: "^" + keyword, // bắt đầu bằng keyword
-        $options: "i" // không phân biệt hoa thường
+        $regex: "^" + keyword,
+        $options: "i" 
       }
     });
    

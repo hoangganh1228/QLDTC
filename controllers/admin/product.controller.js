@@ -43,6 +43,8 @@ module.exports.createProduct = async (req, res) => {
 
 module.exports.updateProduct = async (req, res) => {
   try {
+    console.log("params", req.params.id);
+    
     const result = await productService.updateProduct(req.params.id, req.body);
     if (!result) {
       return res.status(404).json({

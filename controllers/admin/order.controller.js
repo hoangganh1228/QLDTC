@@ -20,7 +20,6 @@ module.exports.getDetailOrder = async (req, res) => {
     const order = await Order.findById(id)
       .populate("userId", "name email")
       .populate("items.product_id", "name price image")
-      .exec()
     if (!order) {
       return res.status(404).json({ message: 'Không tìm thấy đơn hàng' });
     }

@@ -1,4 +1,5 @@
 const Category = require("../../models/category.model");
+const Product = require("../../models/product.model");
 const categoryService = require("../../services/client/category.service");
 const productService = require("../../services/client/product.service");
 
@@ -15,16 +16,13 @@ module.exports.index = async (req, res) => {
 module.exports.getProductsByCategory = async (req, res) => {
   try {
     const rootId = req.params.id;
-    const root = await categoryService.findByCategoryId(rootId);
-    if (!root) {
-      return res.status(404).json({ message: 'Không tìm thấy danh mục gốc' });
-    }
-    const subIds = await categoryService.getAllSubCategoryIds(rootId);
-    const allCategories = [rootId, ...subIds];
-    const products = await productService.findProductsAllCategoryIds(allCategories);
+    const products = await Product.find({
+      deleted: false,
+      status: "active",
+    })
+    .populate('category');
     res.status(200).json({
       message: 'Lấy sản phẩm theo danh mục thành công',
-      total: products.length,
       data: products
     });
   } catch (error) {
