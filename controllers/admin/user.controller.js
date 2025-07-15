@@ -4,7 +4,7 @@ const bcrypt = require("bcryptjs");
 module.exports.index = async (req, res) => {
   try {
     console.log("HEELO");
-    const users = await User.find({deleted: false}, "-password -email"); // loại bỏ password
+    const users = await User.find({deleted: false}, "-password "); // loại bỏ password
     res.status(200).json({ success: true, data: users });
   } catch (err) {
     res.status(500).json({ success: false, error: err.message });
