@@ -3,7 +3,8 @@ const bcrypt = require("bcryptjs");
 // GET /users — Lấy danh sách người dùng
 module.exports.index = async (req, res) => {
   try {
-    const users = await User.find({deleted: false}, "-password"); // loại bỏ password
+    console.log("HEELO");
+    const users = await User.find({deleted: false}, "-password -email"); // loại bỏ password
     res.status(200).json({ success: true, data: users });
   } catch (err) {
     res.status(500).json({ success: false, error: err.message });

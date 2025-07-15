@@ -33,7 +33,7 @@ module.exports = (app) => {
     PATH_ADMIN + "/reviews",
     reviewRoute
   )
-
+  console.log(PATH_ADMIN + "/users")
   app.use(
     PATH_ADMIN + "/users",
     userRoute
